@@ -61,7 +61,6 @@ const TETRIS_PIECES: [[[bool; 4]; 4]; 7] = [
 ];
 
 
-
 struct TetrisGrid {
     grid: [[bool; GRID_WIDTH]; GRID_HEIGHT],
 }
@@ -101,9 +100,9 @@ impl TetrisGrid {
         for y in 0..GRID_HEIGHT {
             for x in 0..GRID_WIDTH {
                 let color = if self.grid[y][x] {
-                    Color::BLACK
-                } else {
                     Color::RED
+                } else {
+                    Color::BLACK
                 };
                 let x_pos = (x as i32 * CELL_SIZE) + GRID_START_X;
                 let y_pos = (y as i32 * CELL_SIZE) + GRID_START_Y;
@@ -130,7 +129,7 @@ fn main() {
     rl.set_target_fps(60);
 
     let mut tetris_grid = TetrisGrid::new();
-    tetris_grid.add_piece(TETRIS_PIECES[rand::thread_rng().gen_range(0..TETRIS_PIECES.len())], 1, 1);
+    tetris_grid.add_piece(TETRIS_PIECES[rand::thread_rng().gen_range(0..TETRIS_PIECES.len())], 4, 1);
 
     while !rl.window_should_close() {
         let dt = rl.get_frame_time();
